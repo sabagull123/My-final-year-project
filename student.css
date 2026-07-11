@@ -1,0 +1,264 @@
+/* ============================================================
+   CAWA - Student Panel Design System
+   Path: cawa/assets/css/student.css
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap');
+
+:root {
+    --bg-deep: #0a0e1a;
+    --bg-panel: #0f1729;
+    --bg-card: #121b30;
+    --bg-hover: #182337;
+    --accent-cyan: #3ee8c4;
+    --accent-cyan-dim: rgba(62, 232, 196, 0.12);
+    --accent-amber: #ffb020;
+    --accent-red: #ff6767;
+    --text-primary: #e8edf5;
+    --text-muted: #8b96ac;
+    --border-soft: rgba(255, 255, 255, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-deep);
+    color: var(--text-primary);
+}
+
+.admin-shell { display: flex; min-height: 100vh; }
+
+/* ---------- Sidebar (same pattern as admin) ---------- */
+.sidebar {
+    flex: 0 0 250px;
+    background: var(--bg-panel);
+    border-right: 1px solid var(--border-soft);
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+}
+
+.sidebar .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 0 10px 24px;
+    border-bottom: 1px solid var(--border-soft);
+    margin-bottom: 18px;
+}
+.sidebar .brand svg { width: 26px; height: 26px; color: var(--accent-cyan); }
+
+.sidebar .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    padding: 0 10px;
+    margin-bottom: 8px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 2px;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+.nav-link svg { width: 18px; height: 18px; flex-shrink: 0; }
+.nav-link:hover { background: var(--bg-hover); color: var(--text-primary); }
+.nav-link.active { background: var(--accent-cyan-dim); color: var(--accent-cyan); }
+
+.sidebar .spacer { flex: 1; }
+.nav-link.logout { color: var(--accent-red); margin-top: 6px; }
+.nav-link.logout:hover { background: rgba(255, 103, 103, 0.1); }
+
+/* ---------- Main area ---------- */
+.main-area { flex: 1; display: flex; flex-direction: column; }
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    border-bottom: 1px solid var(--border-soft);
+}
+.topbar h1 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; margin: 0; }
+.topbar .who { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--text-muted); }
+.who .avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--accent-cyan-dim); color: var(--accent-cyan);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px;
+}
+
+.content { padding: 32px; }
+
+/* ---------- Stat cards ---------- */
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 18px;
+    margin-bottom: 32px;
+}
+.stat-card { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 12px; padding: 20px; }
+.stat-card .label {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text-muted);
+    display: flex; align-items: center; justify-content: space-between;
+}
+.stat-card .label svg { width: 16px; height: 16px; color: var(--accent-cyan); }
+.stat-card .value { font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; margin-top: 10px; }
+
+/* ---------- Panels / tables ---------- */
+.panel { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 12px; padding: 24px; }
+.panel h2 { font-family: 'Space Grotesk', sans-serif; font-size: 17px; margin: 0 0 18px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th {
+    text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted);
+    padding: 10px 12px; border-bottom: 1px solid var(--border-soft);
+}
+td { padding: 12px; border-bottom: 1px solid var(--border-soft); color: var(--text-primary); }
+tr:last-child td { border-bottom: none; }
+
+.badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 500; }
+.badge.active { background: var(--accent-cyan-dim); color: var(--accent-cyan); }
+.badge.inactive { background: rgba(255, 103, 103, 0.12); color: var(--accent-red); }
+
+/* ---------- Content / topic cards ---------- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+.content-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 20px;
+    text-decoration: none;
+    color: var(--text-primary);
+    display: block;
+    transition: border-color 0.15s ease, transform 0.1s ease;
+}
+.content-card:hover { border-color: var(--accent-cyan); transform: translateY(-2px); }
+
+.content-card .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    background: var(--accent-cyan-dim);
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+}
+
+.content-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 16px; margin: 0 0 8px; }
+.content-card p { font-size: 13.5px; color: var(--text-muted); margin: 0; line-height: 1.5; }
+
+/* ---------- Buttons ---------- */
+.btn-primary {
+    background: var(--accent-cyan); color: #06120f; border: none;
+    padding: 10px 18px; border-radius: 8px; font-weight: 600; font-size: 14px;
+    cursor: pointer; font-family: 'Inter', sans-serif;
+    display: inline-flex; align-items: center; gap: 8px;
+    text-decoration: none; transition: filter 0.15s ease;
+}
+.btn-primary:hover { filter: brightness(1.08); }
+.btn-primary svg { width: 16px; height: 16px; }
+
+.btn-secondary {
+    background: transparent; border: 1px solid var(--border-soft); color: var(--text-muted);
+    padding: 10px 18px; border-radius: 8px; font-weight: 500; font-size: 14px;
+    cursor: pointer; text-decoration: none; font-family: 'Inter', sans-serif;
+    display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-secondary:hover { background: var(--bg-hover); color: var(--text-primary); }
+
+/* ---------- Progress bar ---------- */
+.progress-track {
+    width: 100%;
+    height: 8px;
+    background: var(--bg-hover);
+    border-radius: 999px;
+    overflow: hidden;
+}
+.progress-fill {
+    height: 100%;
+    background: var(--accent-cyan);
+    border-radius: 999px;
+    transition: width 0.3s ease;
+}
+
+/* ---------- Quiz question card ---------- */
+.quiz-q {
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 16px;
+}
+.quiz-q h3 { font-family: 'Space Grotesk', sans-serif; font-size: 16px; margin: 0 0 16px; }
+
+.quiz-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--border-soft);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+.quiz-option:hover { border-color: var(--accent-cyan); }
+.quiz-option input[type="radio"] { accent-color: var(--accent-cyan); width: 16px; height: 16px; }
+.quiz-option.correct { border-color: var(--accent-cyan); background: var(--accent-cyan-dim); }
+.quiz-option.incorrect { border-color: var(--accent-red); background: rgba(255, 103, 103, 0.08); }
+
+/* ---------- Alerts ---------- */
+.alert { padding: 12px 14px; border-radius: 8px; font-size: 13.5px; margin-bottom: 20px; border: 1px solid transparent; }
+.alert-error { background: rgba(255, 176, 32, 0.1); border-color: rgba(255, 176, 32, 0.3); color: var(--accent-amber); }
+.alert-success { background: var(--accent-cyan-dim); border-color: rgba(62, 232, 196, 0.3); color: var(--accent-cyan); }
+
+/* ---------- Form fields ---------- */
+.field { margin-bottom: 18px; }
+.field label { display: block; font-size: 13px; font-weight: 500; color: var(--text-muted); margin-bottom: 7px; }
+.field input, .field select, .field textarea {
+    width: 100% !important; padding: 12px 14px !important; background: var(--bg-card) !important;
+    border: 1px solid var(--border-soft) !important; border-radius: 8px !important;
+    color: var(--text-primary) !important; font-size: 14.5px !important; font-family: 'Inter', sans-serif !important;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.field textarea { resize: vertical; }
+.field input::placeholder, .field textarea::placeholder { color: #4a5568 !important; opacity: 1; }
+.field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--accent-cyan) !important; box-shadow: 0 0 0 3px var(--accent-cyan-dim);
+}
+.field input:-webkit-autofill, .field input:-webkit-autofill:hover, .field input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--text-primary) !important;
+    -webkit-box-shadow: 0 0 0px 1000px var(--bg-card) inset !important;
+    transition: background-color 9999s ease-in-out 0s;
+}
+
+@media (max-width: 800px) {
+    .admin-shell { flex-direction: column; }
+    .sidebar { flex: none; width: 100%; }
+}
